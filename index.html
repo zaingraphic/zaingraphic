@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Zain Graphic | مصمم جرافيك ومحرر فيديو</title>
+
+    <meta name="description"
+          content="Zain Graphic — مصمم جرافيك ومحرر فيديو. تصميم شعارات، هويات بصرية، بوسترات، سوشيال ميديا ومونتاج.">
+
+    <style>
+        /* =====================================================
+           ZAIN GRAPHIC — FOUNDATION
+           ===================================================== */
+
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg: #08090d;
+            --bg-soft: #0d0f15;
+            --glass: rgba(255, 255, 255, 0.055);
+            --glass-hover: rgba(255, 255, 255, 0.09);
+            --border: rgba(255, 255, 255, 0.12);
+            --text: #f5f5f7;
+            --muted: rgba(245, 245, 247, 0.62);
+            --accent: #d9d9df;
+            --radius: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Cairo", sans-serif;
+            background:
+                radial-gradient(
+                    circle at 50% -10%,
+                    rgba(255,255,255,0.09),
+                    transparent 38%
+                ),
+                var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.035;
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* =====================================================
+           NAVBAR
+           ===================================================== */
+
+        .navbar {
+            position: fixed;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(94%, 1180px);
+            z-index: 100;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: rgba(12, 13, 18, 0.58);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.28),
+                inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+
+        .nav-logo {
+            width: 46px;
+            height: 46px;
+            flex-shrink: 0;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            display: grid;
+            place-items: center;
+            background: rgba(255,255,255,0.07);
+            overflow: hidden;
+        }
+
+        .nav-logo span {
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .nav-link {
+            padding: 10px 13px;
+            border-radius: 12px;
+            color: var(--muted);
+            font-size: 13px;
+            white-space: nowrap;
+            transition:
+                transform .35s ease,
+                background .35s ease,
+                color .35s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            background: rgba(255,255,255,0.07);
+            transform: translateY(-2px);
+        }
+
+        .more-btn {
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.06);
+            color: var(--text);
+            border-radius: 13px;
+            padding: 10px 15px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: .35s ease;
+        }
+
+        .more-btn:hover {
+            background: rgba(255,255,255,0.11);
+            transform: translateY(-2px);
+        }
+
+        /* =====================================================
+           MORE MENU
+           ===================================================== */
+
+        .more-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            width: 280px;
+            padding: 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: rgba(12,13,18,0.84);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            box-shadow: 0 25px 80px rgba(0,0,0,.45);
+
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(.98);
+            transition: .35s ease;
+        }
+
+        .more-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .more-menu a {
+            display: block;
+            padding: 13px 14px;
+            border-radius: 12px;
+            color: var(--muted);
+            transition: .3s ease;
+        }
+
+        .more-menu a:hover {
+            color: var(--text);
+            background: rgba(255,255,255,.07);
+            transform: translateX(-4px);
+        }
+
+        /* =====================================================
+           HERO
+           ===================================================== */
+
+        .hero {
+            min-height: 100svh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 130px 20px 70px;
+            overflow: hidden;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.055);
+            filter: blur(100px);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            width: min(100%, 1000px);
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 34px;
+            border-radius: 42px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(255,255,255,.16);
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.12),
+                    rgba(255,255,255,.025)
+                );
+            box-shadow:
+                0 35px 100px rgba(0,0,0,.45),
+                inset 0 1px 0 rgba(255,255,255,.12);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            animation: logoFloat 6s ease-in-out infinite;
+        }
+
+        .hero-logo span {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -4px;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0) rotateX(0deg) rotateY(0deg);
+            }
+
+            50% {
+                transform: translateY(-9px) rotateX(3deg) rotateY(-7deg);
+            }
+        }
+
+        .hero-kicker {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 12px;
+            letter-spacing: .5px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 82px);
+            line-height: 1.08;
+            letter-spacing: -3px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(
+                120deg,
+                #fff,
+                #9d9da5
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            color: var(--muted);
+            font-size: clamp(16px, 2vw, 20px);
+            margin-bottom: 34px;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .glass-btn {
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 13px 21px;
+            background: rgba(255,255,255,.065);
+            color: var(--text);
+            cursor: pointer;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transition:
+                transform .35s ease,
+                background .35s ease,
+                box-shadow .35s ease;
+        }
+
+        .glass-btn:hover {
+            transform: translateY(-4px);
+            background: rgba(255,255,255,.11);
+            box-shadow: 0 15px 35px rgba(0,0,0,.25);
+        }
+
+        .hero-bottom {
+            position: absolute;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,.35);
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        /* =====================================================
+           SECTIONS
+           ===================================================== */
+
+        .section {
+            width: min(92%, 1100px);
+            margin: 0 auto;
+            padding: 110px 0;
+        }
+
+        .section-heading {
+            margin-bottom: 42px;
+        }
+
+        .section-number {
+            color: rgba(255,255,255,.38);
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: clamp(30px, 5vw, 52px);
+            letter-spacing: -2px;
+            line-height: 1.15;
+        }
+
+        .section-description {
+            color: var(--muted);
+            max-width: 600px;
+            margin-top: 12px;
+            line-height: 1.9;
+        }
+
+        /* =====================================================
+           ABOUT
+           ===================================================== */
+
+        .about-card {
+            padding: 38px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--glass);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            box-shadow:
+                0 25px 80px rgba(0,0,0,.22),
+                inset 0 1px 0 rgba(255,255,255,.05);
+        }
+
+        .about-card p {
+            color: var(--muted);
+            line-height: 2;
+            font-size: 16px;
+        }
+
+        /* =====================================================
+           SERVICES
+           ===================================================== */
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .service-card {
+            position: relative;
+            min-height: 180px;
+            padding: 25px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.075),
+                    rgba(255,255,255,.025)
+                );
+            overflow: hidden;
+            cursor: pointer;
+            transition:
+                transform .5s cubic-bezier(.2,.8,.2,1),
+                border-color .4s ease,
+                background .4s ease;
+        }
+
+        .service-card::before {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            top: -100px;
+            left: -100px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.07);
+            filter: blur(35px);
+            transition: .6s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(255,255,255,.22);
+            background: var(--glass-hover);
+        }
+
+        .service-card:hover::before {
+            transform: translate(80px, 80px);
+        }
+
+        .service-number {
+            color: rgba(255,255,255,.35);
+            font-size: 12px;
+            margin-bottom: 35px;
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .service-card p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* =====================================================
+           EVENTS
+           ===================================================== */
+
+        .event-card {
+            grid-column: span 2;
+        }
+
+        .event-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            margin-top: 0;
+            transition:
+                max-height .6s ease,
+                opacity .4s ease,
+                margin .5s ease;
+        }
+
+        .event-card.open .event-options {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 22px;
+        }
+
+        .event-option {
+            min-height: 150px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.045);
+            display: grid;
+            place-items: center;
+            font-size: 22px;
+            transition: .4s ease;
+        }
+
+        .event-option:hover {
+            background: rgba(255,255,255,.09);
+            transform: translateY(-5px);
+        }
+
+        /* =====================================================
+           CTA
+           ===================================================== */
+
+        .cta {
+            padding: 70px 35px;
+            text-align: center;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.08),
+                    rgba(255,255,255,.025)
+                );
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow:
+                0 35px 100px rgba(0,0,0,.25),
+                inset 0 1px 0 rgba(255,255,255,.07);
+        }
+
+        .cta h2 {
+            font-size: clamp(25px, 5vw, 42px);
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: var(--muted);
+            line-height: 1.9;
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+
+        /* =====================================================
+           CONTACT
+           ===================================================== */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .contact-card {
+            min-height: 150px;
+            padding: 22px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--glass);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: .4s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+            background: var(--glass-hover);
+        }
+
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            display: grid;
+            place-items: center;
+            background: rgba(255,255,255,.05);
+        }
+
+        .contact-card span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* =====================================================
+           FOOTER
+           ===================================================== */
+
+        footer {
+            width: min(92%, 1100px);
+            margin: auto;
+            padding: 35px 0 50px;
+            color: rgba(255,255,255,.35);
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* =====================================================
+           REVEAL
+           ===================================================== */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            filter: blur(10px);
+            transition:
+                opacity .9s ease,
+                transform .9s cubic-bezier(.2,.8,.2,1),
+                filter .9s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        /* =====================================================
+           MOBILE
+           ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                top: 10px;
+                width: 94%;
+            }
+
+            .nav-inner {
+                padding: 8px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .more-btn {
+                margin-right: auto;
+            }
+
+            .hero {
+                padding-top: 120px;
+            }
+
+            .hero-logo {
+                width: 125px;
+                height: 125px;
+                border-radius: 34px;
+            }
+
+            .hero-logo span {
+                font-size: 31px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .services-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .event-card {
+                grid-column: span 1;
+            }
+
+            .event-options {
+                grid-template-columns: 1fr;
+            }
+
+            .about-card {
+                padding: 25px;
+            }
+
+            .cta {
+                padding: 50px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         NAVBAR
+         ===================================================== -->
+
+    <header class="navbar">
+        <div class="nav-inner">
+
+            <a href="#home" class="nav-logo">
+                <span>ZG</span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#about" class="nav-link">تعريف عني</a>
+                <a href="#logo-design" class="nav-link">تصميم الشعارات</a>
+                <a href="#branding" class="nav-link">الهوية البصرية</a>
+                <a href="#posters" class="nav-link">البوسترات</a>
+                <a href="#social" class="nav-link">السوشيال ميديا</a>
+            </nav>
+
+            <button class="more-btn" id="moreBtn">
+                عرض المزيد
+            </button>
+
+            <div class="more-menu" id="moreMenu">
+                <a href="#reels">مونتاج الريلز</a>
+                <a href="#infographic">تصميم الإنفوجرافيك</a>
+                <a href="#magazines">تصميم المجلات</a>
+                <a href="#books">تصميم أغلفة الكتب</a>
+                <a href="#events">تصاميم المناسبات</a>
+                <a href="#contact">تواصل معي</a>
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="hero-glow"></div>
+
+            <div class="hero-content">
+
+                <div class="hero-logo reveal">
+                    <span>ZG</span>
+                </div>
+
+                <div class="hero-kicker reveal">
+                    ZAIN GRAPHIC
+                </div>
+
+                <h1 class="reveal">
+                    أهلاً.. أنا <span>زين</span>
+                </h1>
+
+                <p class="hero-subtitle reveal">
+                    مصمم جرافيك ومحرر فيديو
+                </p>
+
+                <div class="hero-actions reveal">
+                    <a href="#portfolio" class="glass-btn">
+                        استكشف أعمالي
+                    </a>
+
+                    <a href="#contact" class="glass-btn">
+                        تواصل معي
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="hero-bottom">
+                SCROLL TO EXPLORE
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ABOUT
+             ===================================================== -->
+
+        <section class="section reveal" id="about">
+
+            <div class="section-heading">
+                <div class="section-number">01 / ABOUT</div>
+                <h2 class="section-title">تعريف عني</h2>
+            </div>
+
+            <div class="about-card">
+                <p>
+                    مساحة تعريفية عن زين وأسلوبه في التصميم،
+                    والخبرة التي يقدمها، والرؤية التي يعتمد عليها
+                    في صناعة تصاميم بصرية مميزة.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PORTFOLIO
+             ===================================================== -->
+
+        <section class="section" id="portfolio">
+
+            <div class="section-heading reveal">
+                <div class="section-number">02 — 10 / WORK</div>
+                <h2 class="section-title">استكشف أعمالي</h2>
+                <p class="section-description">
+                    مجموعة من الخدمات والتخصصات التي أقدمها.
+                    سنضيف الأعمال والصور والفيديوهات في المرحلة الأخيرة.
+                </p>
+            </div>
+
+
+            <div class="services-grid">
+
+                <article class="service-card reveal" id="logo-design">
+                    <div class="service-number">02</div>
+                    <h3>تصميم الشعارات</h3>
+                    <p>هوية بصرية تبدأ من فكرة وتتحول إلى علامة.</p>
+                </article>
+
+
+                <article class="service-card reveal" id="branding">
+                    <div class="service-number">03</div>
+                    <h3>تصميم الهوية البصرية</h3>
+                    <p>بناء لغة بصرية متكاملة ومتناسقة للعلامة.</p>
+                </article>
+
+
+                <article class="service-card reveal" id="posters">
+                    <div class="service-number">04</div>
+                    <h3>تصميم البوسترات الإعلانية</h3>
+                    <p>تصاميم تلفت الانتباه وتوصل الرسالة.</p>
+                </article>
+
+
+                <article class="service-card reveal" id="social">
+                    <div class="service-number">05</div>
+                    <h3>تصميمات السوشيال ميديا</h3>
+                    <p>محتوى بصري مصمم للظهور والتفاعل.</p>
+                </article>
+
+
+                <article class="service-card reveal" id="reels">
+                    <div class="service-number">06</div>
+                    <h3>مونتاج الريلز</h3>
+                    <p>فيديوهات قصيرة بإيقاع بصري جذاب.</p>
+                </article>
+
+
+                <article class="service-card reveal" id="infographic">
+                    <div class="service-number">07</div>
+                    <h3>تصميم الإنفوجرافيك</h3>
+                    <p>تحويل المعلومات إلى تجربة بصرية واضحة.</p>
+                </article>
+
+
+                <article class="service-card reveal" id="magazines">
+                    <div class="service-number">08</div>
+                    <h3>تصميم المجلات</h3>
+                    <p>تنسيق بصري متكامل للمحتوى والمقالات.</p>
+                </article>
+
+
+                <article class="service-card reveal" id="books">
+                    <div class="service-number">09</div>
+                    <h3>تصميم أغلفة الكتب</h3>
+                    <p>غلاف يصنع الانطباع الأول عن العمل.</p>
+                </article>
+
+
+                <!-- EVENTS -->
+
+                <article class="service-card event-card reveal" id="events">
+
+                    <div class="service-number">10</div>
+
+                    <h3>تصاميم المناسبات</h3>
+
+                    <p>
+                        اختر نوع التصميم الذي تريد استكشافه
+                    </p>
+
+                    <div class="event-options">
+
+                        <div class="event-option">
+                            دعوات
+                        </div>
+
+                        <div class="event-option">
+                            تهنئات
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CTA
+             ===================================================== -->
+
+        <section class="section reveal">
+
+            <div class="cta">
+
+                <h2>
+                    أعمالي لا تتوقف هنا.
+                </h2>
+
+                <p>
+                    اطلب تصميمك التجريبي مجانًا،
+                    ودع النتيجة تتحدث عنك.
+                </p>
+
+                <a href="#contact" class="glass-btn">
+                    ابدأ مشروعك
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CONTACT
+             ===================================================== -->
+
+        <section class="section reveal" id="contact">
+
+            <div class="section-heading">
+                <div class="section-number">11 / CONTACT</div>
+                <h2 class="section-title">تواصل معي</h2>
+                <p class="section-description">
+                    روابط حساباتك ستوضع هنا لاحقًا مع
+                    Animation خاص لكل أيقونة.
+                </p>
+            </div>
+
+
+            <div class="contact-grid">
+
+                <a href="#" class="contact-card">
+                    <div class="contact-icon">IG</div>
+                    <span>Instagram</span>
+                </a>
+
+                <a href="#" class="contact-card">
+                    <div class="contact-icon">TK</div>
+                    <span>TikTok</span>
+                </a>
+
+                <a href="#" class="contact-card">
+                    <div class="contact-icon">TG</div>
+                    <span>Telegram</span>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+        © 2026 Zain Graphic — All Rights Reserved
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+        /* -------------------------------
+           MORE MENU
+        -------------------------------- */
+
+        const moreBtn = document.getElementById("moreBtn");
+        const moreMenu = document.getElementById("moreMenu");
+
+        moreBtn.addEventListener("click", () => {
+            moreMenu.classList.toggle("active");
+        });
+
+
+        document.addEventListener("click", (event) => {
+
+            if (
+                !moreBtn.contains(event.target) &&
+                !moreMenu.contains(event.target)
+            ) {
+                moreMenu.classList.remove("active");
+            }
+
+        });
+
+
+        /* -------------------------------
+           EVENTS
+        -------------------------------- */
+
+        const eventCard = document.querySelector(".event-card");
+
+        eventCard.addEventListener("click", () => {
+            eventCard.classList.toggle("open");
+        });
+
+
+        /* -------------------------------
+           SCROLL REVEAL
+        -------------------------------- */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+
+                entries.forEach((entry) => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("visible");
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+
+        revealElements.forEach((element) => {
+            observer.observe(element);
+        });
+
+
+        /* -------------------------------
+           INITIAL HERO REVEAL
+        -------------------------------- */
+
+        window.addEventListener("load", () => {
+
+            setTimeout(() => {
+
+                document
+                    .querySelectorAll(".hero .reveal")
+                    .forEach((element, index) => {
+
+                        setTimeout(() => {
+                            element.classList.add("visible");
+                        }, index * 180);
+
+                    });
+
+            }, 250);
+
+        });
+
+    </script>
+
+</body>
+  </html>
